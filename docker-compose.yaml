@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  web:
+    build: ./Back-End
+    restart: always
+    volumes:
+      - ./Back-End:/codec
+    ports:
+      - 8080:8080
+
+  mongo:
+    image: mongo
+    restart: always
+    env_file:
+      - ./Database/mongo.env
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    env_file:
+      - ./Database/mongo.env
